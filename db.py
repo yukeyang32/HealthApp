@@ -131,6 +131,7 @@ class Food(db.Model):
     id = db.Column(db.Integer,primary_key = True)
     name = db.Column(db.String, nullable = False)
     cal_per_unit = db.Column(db.Integer,nullable = False)
+    unit = db.Column(db.String, nullable = False)
     suggestions = db.relationship('Suggestion', secondary = association_food_suggestion_table, back_populates = 'foods')
 
     def __init__(self,**kwargs):
