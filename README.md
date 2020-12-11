@@ -224,7 +224,7 @@ Response
 }
 ```
 
-### 7) Get Specific Suggestion by ID
+### 10) Get Specific Suggestion by ID
 Return Activity Info by correponding ID
 
 <code>GET</code> /api/suggestions/{id}/
@@ -244,7 +244,7 @@ Response
 }
 ```
 
-### 9) Add Food to a Suggestion Plan by ID
+### 11) Add Food to a Suggestion Plan by ID
 Make changes to suggestion plan by adding a specific type of food by ID
 
 <code>POST</code> /api/suggestions/{ID}/add/
