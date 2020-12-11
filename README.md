@@ -199,6 +199,74 @@ Response
 }
 ```
 
+### 9) Create a Suggestion Plan
+Record a suggestion plan
+
+<code>POST</code> /api/suggestions/
+
+Request
+```
+{
+  "name": <USER INPUT>
+}
+```
+Response
+```
+{
+  "success": true,
+  "data": [
+    {
+      "id": <ID>,
+      "foods": [],
+      "total_calories": 0
+    }
+  ]
+}
+```
+
+### 7) Get Specific Suggestion by ID
+Return Activity Info by correponding ID
+
+<code>GET</code> /api/suggestions/{id}/
+
+Response
+```
+{
+  "success": true,
+  "data": [
+    {
+      "id": <ID>,
+      "name": <Name>,
+      "total_calories": <USER INPUT>,
+      "foods": <SERIALIZED Food>
+    }
+  ]
+}
+```
+
+### 9) Add Food to a Suggestion Plan by ID
+Make changes to suggestion plan by adding a specific type of food by ID
+
+<code>POST</code> /api/suggestions/{ID}/add/
+
+Request
+```
+{
+  "food_id": <USER INPUT>,
+  "calories": <USER INPUT>
+}
+```
+Response
+```
+{
+  "success": true,
+  "data": [
+    {
+      "suggestion": <SERIALIZED Suggestion>
+    }
+  ]
+}
+```
 
 
 
