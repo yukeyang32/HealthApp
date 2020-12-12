@@ -8,13 +8,19 @@
 import UIKit
 
 class FoodViewController:UIViewController {
-    private let userFoodTableView = UITableView()
-    private let foodReuseIdentifier = "FoodReuseIdentifier"
-    private let saveButton = UIButton()
     private let foodSearchBar = UISearchBar()
     private let totalCaloriesLabel = UILabel()
+
+    private let searchFoodTableView = UITableView()
+    private let searchReuseIdentifier = "SearchReuseIdentifier"
+    private let searchFood:[Food] = []
     
+    
+    private let userFoodTableView = UITableView()
+    private let foodReuseIdentifier = "FoodReuseIdentifier"
+
     private var userFoods:[UserFood] = []
+    
     let placeholder1 = UserFood(userId: "Placeholder", foodId: 123, food:Food(foodId: 123, name: "Apple", calPerUnit: 5, unit: "grams"), timestamp: "12:55 P.M.", amount: 3)
     let placeholder2 = UserFood(userId: "Placeholder", foodId: 124, food: Food(foodId: 124, name: "Banana", calPerUnit: 5, unit: "grams"), timestamp: "1:00 P.M.", amount: 5)
     
@@ -23,8 +29,15 @@ class FoodViewController:UIViewController {
         
         userFoods = [placeholder1, placeholder2]
         
-        title = "Healthy Eating"
+        title = "Food"
         view.backgroundColor = .white
+        
+        searchFoodTableView.delegate = self
+        searchFoodTableView.dataSource = self
+        searchFoodTableView.separatorStyle = .singleLine
+        searchFoodTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: searchReuseIdentifier)
+        view.addSubview(searchFoodTableView)
+        
         userFoodTableView.delegate = self
         userFoodTableView.dataSource = self
         userFoodTableView.separatorStyle = .singleLine
@@ -47,16 +60,16 @@ class FoodViewController:UIViewController {
         foodSearchBar.searchTextField.clearButtonMode = .whileEditing
         foodSearchBar.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(foodSearchBar)
-        
-        saveButton.setTitle("Save", for: .normal)
-        saveButton.addTarget(self, action: #selector(dismissAndSave), for: .touchUpInside)
-        saveButton.translatesAutoresizingMaskIntoConstraints = false
-        saveButton.setTitleColor(.systemBlue, for: .normal)
-        view.addSubview(saveButton)
         setUpConstraints()
     }
     
     func setUpConstraints() {
+//        NSLayoutConstraint.activate([
+//            searchFoodTableView.topAnchor.constraint(equalTo: foodSearchBar.bottomAnchor, constant: 5),
+//            searchFoodTableView.heightAnchor.constraint(equalToConstant: 100),
+//            searchFoodTableView.widthAnchor.constraint(equalTo: view.widthAnchor)
+//        ])
+        
         NSLayoutConstraint.activate([
             userFoodTableView.topAnchor.constraint(equalTo: foodSearchBar.bottomAnchor, constant: 15),
             userFoodTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
@@ -66,25 +79,15 @@ class FoodViewController:UIViewController {
         NSLayoutConstraint.activate([
             totalCaloriesLabel.topAnchor.constraint(equalTo:userFoodTableView.bottomAnchor, constant: 5),
             totalCaloriesLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            totalCaloriesLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
+            totalCaloriesLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -5),
         ])
         
         NSLayoutConstraint.activate([
-            foodSearchBar.topAnchor.constraint(equalTo: saveButton.bottomAnchor, constant: 2),
+            foodSearchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 2),
             foodSearchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             foodSearchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             foodSearchBar.heightAnchor.constraint(equalToConstant: 80)
         ])
-        
-        NSLayoutConstraint.activate([
-            saveButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 5),
-            saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
-        ])
-    }
-    
-    @objc func dismissAndSave() {
-        dismiss(animated: true, completion: nil)
-        userFoodTableView.reloadData()
     }
     
     func calculateTotalCalories(userFoods: [UserFood])-> Int {
@@ -98,20 +101,36 @@ class FoodViewController:UIViewController {
 
 extension FoodViewController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if (tableView == self.userFoodTableView) {
+            return 60
+        }
+        if (tableView == self.searchFoodTableView) {
+            return 60
+        }
         return 60
     }
 }
 
 extension FoodViewController:UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userFoods.count
+        var count:Int = 0
+        if tableView == self.userFoodTableView {
+            count = userFoods.count
+        }
+        
+        if tableView == self.searchFoodTableView {
+            count = searchFood.count
+        }
+        return count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: foodReuseIdentifier) as? UserFoodTableViewCell
-        else {return UITableViewCell()}
-        let userFood = userFoods[indexPath.row]
-        cell.configure(for: userFood)
-        return cell
+//        if (tableView == self.userFoodTableView) {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: foodReuseIdentifier) as? UserFoodTableViewCell
+            else {return UITableViewCell()}
+            let userFood = userFoods[indexPath.row]
+            cell.configure(for: userFood)
+            return cell
+//        }
     }
 }
 

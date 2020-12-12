@@ -16,6 +16,16 @@
 		E7367568257E9A2900AD33B2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7367567257E9A2900AD33B2 /* ViewController.swift */; };
 		E736756D257E9A2A00AD33B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E736756C257E9A2A00AD33B2 /* Assets.xcassets */; };
 		E7367570257E9A2A00AD33B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E736756E257E9A2A00AD33B2 /* LaunchScreen.storyboard */; };
+		E75C0FD7258443C80095EAA1 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75C0FD6258443C80095EAA1 /* Activity.swift */; };
+		E75C0FDA258443EA0095EAA1 /* ActivityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75C0FD9258443EA0095EAA1 /* ActivityDetailViewController.swift */; };
+		E75C0FDD258444300095EAA1 /* ActivityListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75C0FDC258444300095EAA1 /* ActivityListController.swift */; };
+		E75C0FE0258444550095EAA1 /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75C0FDF258444550095EAA1 /* ActivityTableViewCell.swift */; };
+		E75C0FE32584447D0095EAA1 /* PlanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75C0FE22584447D0095EAA1 /* PlanTableViewCell.swift */; };
+		E75C0FE6258444950095EAA1 /* PlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75C0FE5258444950095EAA1 /* PlanViewController.swift */; };
+		E75C0FE9258446170095EAA1 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75C0FE8258446170095EAA1 /* Day.swift */; };
+		E75C0FEC2584470F0095EAA1 /* WeekdayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75C0FEB2584470F0095EAA1 /* WeekdayTableViewCell.swift */; };
+		E75C0FF325844A9F0095EAA1 /* SubTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75C0FF225844A9F0095EAA1 /* SubTabController.swift */; };
+		E75C0FF6258451230095EAA1 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75C0FF5258451230095EAA1 /* SearchTableViewCell.swift */; };
 		E797FEBD257FC54A00ED69F5 /* FoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E797FEBC257FC54900ED69F5 /* FoodViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +43,16 @@
 		E736756C257E9A2A00AD33B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E736756F257E9A2A00AD33B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E7367571257E9A2A00AD33B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E75C0FD6258443C80095EAA1 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
+		E75C0FD9258443EA0095EAA1 /* ActivityDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailViewController.swift; sourceTree = "<group>"; };
+		E75C0FDC258444300095EAA1 /* ActivityListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListController.swift; sourceTree = "<group>"; };
+		E75C0FDF258444550095EAA1 /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
+		E75C0FE22584447D0095EAA1 /* PlanTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanTableViewCell.swift; sourceTree = "<group>"; };
+		E75C0FE5258444950095EAA1 /* PlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanViewController.swift; sourceTree = "<group>"; };
+		E75C0FE8258446170095EAA1 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
+		E75C0FEB2584470F0095EAA1 /* WeekdayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayTableViewCell.swift; sourceTree = "<group>"; };
+		E75C0FF225844A9F0095EAA1 /* SubTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTabController.swift; sourceTree = "<group>"; };
+		E75C0FF5258451230095EAA1 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		E797FEBC257FC54900ED69F5 /* FoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,10 +109,20 @@
 				E7367563257E9A2900AD33B2 /* AppDelegate.swift */,
 				E7367565257E9A2900AD33B2 /* SceneDelegate.swift */,
 				E7367567257E9A2900AD33B2 /* ViewController.swift */,
+				E75C0FF225844A9F0095EAA1 /* SubTabController.swift */,
+				E75C0FEB2584470F0095EAA1 /* WeekdayTableViewCell.swift */,
+				E75C0FE8258446170095EAA1 /* Day.swift */,
 				E797FEBC257FC54900ED69F5 /* FoodViewController.swift */,
+				E75C0FF5258451230095EAA1 /* SearchTableViewCell.swift */,
 				E716E8E2257FBEB300D745E9 /* UserFoodTableViewCell.swift */,
 				E716E8D1257E9B8B00D745E9 /* Food.swift */,
 				E716E8D7257EA08400D745E9 /* NetworkManager.swift */,
+				E75C0FD6258443C80095EAA1 /* Activity.swift */,
+				E75C0FD9258443EA0095EAA1 /* ActivityDetailViewController.swift */,
+				E75C0FDC258444300095EAA1 /* ActivityListController.swift */,
+				E75C0FDF258444550095EAA1 /* ActivityTableViewCell.swift */,
+				E75C0FE22584447D0095EAA1 /* PlanTableViewCell.swift */,
+				E75C0FE5258444950095EAA1 /* PlanViewController.swift */,
 				E736756C257E9A2A00AD33B2 /* Assets.xcassets */,
 				E736756E257E9A2A00AD33B2 /* LaunchScreen.storyboard */,
 				E7367571257E9A2A00AD33B2 /* Info.plist */,
@@ -213,12 +243,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E75C0FEC2584470F0095EAA1 /* WeekdayTableViewCell.swift in Sources */,
+				E75C0FE9258446170095EAA1 /* Day.swift in Sources */,
 				E716E8E3257FBEB300D745E9 /* UserFoodTableViewCell.swift in Sources */,
 				E797FEBD257FC54A00ED69F5 /* FoodViewController.swift in Sources */,
+				E75C0FDD258444300095EAA1 /* ActivityListController.swift in Sources */,
 				E716E8D8257EA08400D745E9 /* NetworkManager.swift in Sources */,
+				E75C0FF325844A9F0095EAA1 /* SubTabController.swift in Sources */,
+				E75C0FE32584447D0095EAA1 /* PlanTableViewCell.swift in Sources */,
+				E75C0FE0258444550095EAA1 /* ActivityTableViewCell.swift in Sources */,
+				E75C0FDA258443EA0095EAA1 /* ActivityDetailViewController.swift in Sources */,
 				E7367568257E9A2900AD33B2 /* ViewController.swift in Sources */,
+				E75C0FF6258451230095EAA1 /* SearchTableViewCell.swift in Sources */,
 				E716E8D2257E9B8B00D745E9 /* Food.swift in Sources */,
+				E75C0FE6258444950095EAA1 /* PlanViewController.swift in Sources */,
 				E7367564257E9A2900AD33B2 /* AppDelegate.swift in Sources */,
+				E75C0FD7258443C80095EAA1 /* Activity.swift in Sources */,
 				E7367566257E9A2900AD33B2 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
