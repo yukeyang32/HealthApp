@@ -41,19 +41,25 @@ class Calories(db.Model):
     id = db.Column(db.Integer,primary_key = True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'),nullable = False)
     calories = db.Column(db.Integer, nullable = False)
-    timestamp = db.Column(db.Integer,nullable = False)
+    year = db.Column(db.Integer,nullable = False)
+    month = db.Column(db.Integer,nullable = False)
+    day = db.Column(db.Integer,nullable = False)
 
     def __init__(self,**kwargs):
         self.user_id = kwargs.get('user_id')
         self.calories = kwargs.get('calories',0)
-        self.timestamp = kwargs.get('timestamp',0)
+        self.year = kwargs.get('year',2020)
+        self.month = kwargs.get('month',1)
+        self.day = kwargs.get('day',1)
 
     def serialize(self):
         return{
             'id': self.id,
             'user_id' : self.user_id,
             'calories': self.calories,
-            'timestamp': self.timestamp
+            'year': self.year,
+            'month': self.month,
+            'day': self.day,
         }
 
 class UserActivity(db.Model):
