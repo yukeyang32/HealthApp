@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		39A6759025846BB100FC193E /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A6758F25846BB100FC193E /* CalendarViewController.swift */; };
+		39A67594258470F600FC193E /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 39A67593258470F600FC193E /* FSCalendar */; };
 		53A7DE6F879FF1238AB66829 /* Pods_HackChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 211829E1A2F5D298631D21F4 /* Pods_HackChallenge.framework */; };
 		E716E8D2257E9B8B00D745E9 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = E716E8D1257E9B8B00D745E9 /* Food.swift */; };
 		E716E8D8257EA08400D745E9 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E716E8D7257EA08400D745E9 /* NetworkManager.swift */; };
@@ -15,7 +17,6 @@
 		E7367566257E9A2900AD33B2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7367565257E9A2900AD33B2 /* SceneDelegate.swift */; };
 		E7367568257E9A2900AD33B2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7367567257E9A2900AD33B2 /* ViewController.swift */; };
 		E736756D257E9A2A00AD33B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E736756C257E9A2A00AD33B2 /* Assets.xcassets */; };
-		E7367570257E9A2A00AD33B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E736756E257E9A2A00AD33B2 /* LaunchScreen.storyboard */; };
 		E75C0FD7258443C80095EAA1 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75C0FD6258443C80095EAA1 /* Activity.swift */; };
 		E75C0FDA258443EA0095EAA1 /* ActivityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75C0FD9258443EA0095EAA1 /* ActivityDetailViewController.swift */; };
 		E75C0FDD258444300095EAA1 /* ActivityListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75C0FDC258444300095EAA1 /* ActivityListController.swift */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		211829E1A2F5D298631D21F4 /* Pods_HackChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HackChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		39A6758F25846BB100FC193E /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		6238356EBCED507BF9A67C92 /* Pods-HackChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackChallenge.release.xcconfig"; path = "Target Support Files/Pods-HackChallenge/Pods-HackChallenge.release.xcconfig"; sourceTree = "<group>"; };
 		AB36CDD25DFB975775B41FAF /* Pods-HackChallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackChallenge.debug.xcconfig"; path = "Target Support Files/Pods-HackChallenge/Pods-HackChallenge.debug.xcconfig"; sourceTree = "<group>"; };
 		E716E8D1257E9B8B00D745E9 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
@@ -41,7 +43,6 @@
 		E7367565257E9A2900AD33B2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E7367567257E9A2900AD33B2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E736756C257E9A2A00AD33B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E736756F257E9A2A00AD33B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E7367571257E9A2A00AD33B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E75C0FD6258443C80095EAA1 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		E75C0FD9258443EA0095EAA1 /* ActivityDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +63,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				53A7DE6F879FF1238AB66829 /* Pods_HackChallenge.framework in Frameworks */,
+				39A67594258470F600FC193E /* FSCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,8 +126,8 @@
 				E75C0FE22584447D0095EAA1 /* PlanTableViewCell.swift */,
 				E75C0FE5258444950095EAA1 /* PlanViewController.swift */,
 				E736756C257E9A2A00AD33B2 /* Assets.xcassets */,
-				E736756E257E9A2A00AD33B2 /* LaunchScreen.storyboard */,
 				E7367571257E9A2A00AD33B2 /* Info.plist */,
+				39A6758F25846BB100FC193E /* CalendarViewController.swift */,
 			);
 			path = HackChallenge;
 			sourceTree = "<group>";
@@ -148,6 +150,9 @@
 			dependencies = (
 			);
 			name = HackChallenge;
+			packageProductDependencies = (
+				39A67593258470F600FC193E /* FSCalendar */,
+			);
 			productName = HackChallenge;
 			productReference = E7367560257E9A2900AD33B2 /* HackChallenge.app */;
 			productType = "com.apple.product-type.application";
@@ -175,6 +180,9 @@
 				Base,
 			);
 			mainGroup = E7367557257E9A2900AD33B2;
+			packageReferences = (
+				39A67592258470F600FC193E /* XCRemoteSwiftPackageReference "FSCalendar" */,
+			);
 			productRefGroup = E7367561257E9A2900AD33B2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -189,7 +197,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7367570257E9A2A00AD33B2 /* LaunchScreen.storyboard in Resources */,
 				E736756D257E9A2A00AD33B2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,6 +256,7 @@
 				E797FEBD257FC54A00ED69F5 /* FoodViewController.swift in Sources */,
 				E75C0FDD258444300095EAA1 /* ActivityListController.swift in Sources */,
 				E716E8D8257EA08400D745E9 /* NetworkManager.swift in Sources */,
+				39A6759025846BB100FC193E /* CalendarViewController.swift in Sources */,
 				E75C0FF325844A9F0095EAA1 /* SubTabController.swift in Sources */,
 				E75C0FE32584447D0095EAA1 /* PlanTableViewCell.swift in Sources */,
 				E75C0FE0258444550095EAA1 /* ActivityTableViewCell.swift in Sources */,
@@ -264,17 +272,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		E736756E257E9A2A00AD33B2 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E736756F257E9A2A00AD33B2 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		E7367572257E9A2A00AD33B2 /* Debug */ = {
@@ -453,6 +450,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		39A67592258470F600FC193E /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		39A67593258470F600FC193E /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 39A67592258470F600FC193E /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E7367558257E9A2900AD33B2 /* Project object */;
 }

@@ -7,6 +7,7 @@
 import  UIKit
 
 protocol AddRemoveDelegte: class {
+    
     func addToPlan(index:Int,hours:Int)
     func addSongName(song_name:String, artists_name: String, album_name: String)
 }
@@ -15,6 +16,8 @@ protocol AddRemoveDelegte: class {
 class ActivityListController: UIViewController {
     
     var tableView: UITableView!
+    
+    var current_plan: UIButton!
     
     var activities: [Activity]!
     let reuseIdentifier = "Activity List"
@@ -28,9 +31,16 @@ class ActivityListController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.'
         activities = [ac1,ac2]
-        title = "Activities"
+//        title = "ActivityList"
         view.backgroundColor = .white
-        navigationItem.rightBarButtonItem =  UIBarButtonItem(title: "Current Plan(\(activities_pick.count))", style: .plain, target: self, action: #selector(addPlanViewController))
+//        navigationItem.rightBarButtonItem =  UIBarButtonItem(title: "Current Plan(\(activities_pick.count))", style: .plain, target: self, action: #selector(addPlanViewController))
+        
+        current_plan = UIButton()
+        current_plan.backgroundColor = .black
+        current_plan.setTitle("Current Plan(\(activities_pick.count))", for:  UIControl.State.normal)
+        current_plan.addTarget(self, action:#selector(addPlanViewController), for: .touchUpInside)
+        current_plan.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(current_plan)
         
         // Initialize tableView!
         tableView = UITableView()
@@ -46,9 +56,16 @@ class ActivityListController: UIViewController {
     func setupConstraints() {
 //        Setup the constraints for our views
         NSLayoutConstraint.activate([
+            current_plan.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            current_plan.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            current_plan.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            current_plan.bottomAnchor.constraint(equalTo: tableView.topAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.topAnchor.constraint(equalTo: current_plan.bottomAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
@@ -110,6 +127,7 @@ extension ActivityListController: UITableViewDelegate {
 //        navigationController?.pushViewController(vc, animated: true)
 //
 //    }
+
 }
 
 
@@ -119,7 +137,7 @@ extension ActivityListController: AddRemoveDelegte{
         activities_pick.append((activities[index],hours))
         activities.remove(at: index)
         tableView.reloadData()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Current Plan(\(activities_pick.count))", style: .plain, target: self, action: #selector(addPlanViewController));
+        current_plan.setTitle("Current Plan(\(activities_pick.count))", for:  UIControl.State.normal)
     }
     func addSongName(song_name:String, artists_name: String, album_name: String){
         return
