@@ -154,10 +154,10 @@ Response
 }
 ```
 
-### 7) Get Specific Food by ID
-Return Activity Info by correponding ID
+### 7) Get Specific Food by Name
+Return Activity Info by correponding Food
 
-<code>GET</code> /api/foods/{id}/
+<code>GET</code> /api/foods/{name}/
 
 Response
 ```
@@ -184,7 +184,9 @@ Request
 {
   "user_id": <USER INPUT>,
   "amount": <USER INPUT>,
-  "timestamp": <USER INPUT>
+  "year": <USER INPUT>,
+  "month": <USER INPUT>,
+  "day": <USER INPUT>
 }
 ```
 Response
