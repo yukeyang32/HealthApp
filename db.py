@@ -115,7 +115,7 @@ class UserFood(db.Model):
     __table__name = 'userFood'
     id = db.Column(db.Integer,primary_key = True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'),nullable = False)
-    food_id = db.Column(db.Integer, db.ForeignKey('food.id'),nullable = False)
+    # food_id = db.Column(db.Integer, db.ForeignKey('food.id'),nullable = False)
     name = db.Column(db.String, nullable = False)
     year = db.Column(db.Integer,nullable = False)
     month = db.Column(db.Integer,nullable = False)
@@ -124,7 +124,7 @@ class UserFood(db.Model):
 
     def __init__(self,**kwargs):
         self.user_id = kwargs.get('user_id')
-        self.food_id = kwargs.get('food_id')
+        # self.food_id = kwargs.get('food_id')
         self.name = kwargs.get('name','')
         self.year = kwargs.get('year',2020)
         self.month = kwargs.get('month',1)
@@ -135,7 +135,7 @@ class UserFood(db.Model):
         return{
             'id': self.id,
             'user_id' : self.user_id,
-            'food_id' : self.food_id,
+            # 'food_id' : self.food_id,
             'name': self.name,
             'year': self.year,
             'month': self.month,
@@ -155,12 +155,14 @@ class Food(db.Model):
     def __init__(self,**kwargs):
         self.name = kwargs.get('name','')
         self.cal_per_unit= kwargs.get('cal_per_unit',0)
+        self.unit= kwargs.get('unit','')
 
     def serialize(self):
         return{
             'id' : self.id,
             'name': self.name,
-            'cal_per_unit': self.cal_per_unit
+            'cal_per_unit': self.cal_per_unit,
+            'unit': self.unit
         }
 
 class Suggestion(db.Model):
