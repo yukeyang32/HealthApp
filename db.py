@@ -165,7 +165,7 @@ class Food(db.Model):
 
 class Suggestion(db.Model):
     __table__name = 'suggestion'
-    suggestion_id = db.Column(db.Integer,primary_key = True)
+    id = db.Column(db.Integer,primary_key = True)
     name = db.Column(db.String, nullable = False)
     total_calories = db.Column(db.Integer,nullable = False)
     foods = db.relationship('Food', secondary = association_food_suggestion_table,back_populates = 'suggestions')
@@ -176,7 +176,7 @@ class Suggestion(db.Model):
 
     def serialize(self):
         return{
-            'suggestion_id' : self.suggestion_id,
+            'suggestion_id' : self.id,
             'name': self.name,
             'total_calories': self.total_calories,
             'foods': [f.serialize() for f in self.foods]
