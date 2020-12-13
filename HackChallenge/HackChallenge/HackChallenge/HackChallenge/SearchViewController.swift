@@ -86,10 +86,12 @@ class SearchViewController: UIViewController {
             addButton.topAnchor.constraint(equalTo: amountField.bottomAnchor, constant: 15),
             addButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
-        
     }
     
     @objc func addAndDismiss() {
+        if amountField.text!.count == 0 {
+            dismiss(animated: true, completion: nil)
+        }
         if let amount = Int(amountField.text ?? "0") {
             delegate?.addFood(amount: amount, food: food!)
             dismiss(animated: true, completion: nil)

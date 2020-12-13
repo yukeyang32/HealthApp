@@ -26,8 +26,8 @@ class FoodViewController:UIViewController {
 
     private var userFoods:[UserFood] = []
     
-    let placeholder1 = UserFood(userId: "Placeholder", foodId: 123, food:Food(foodId: 123, name: "Apple", calPerUnit: 5, unit: "grams"), timestamp: "12:55 P.M.", amount: 3)
-    let placeholder2 = UserFood(userId: "Placeholder", foodId: 124, food: Food(foodId: 124, name: "Banana", calPerUnit: 5, unit: "grams"), timestamp: "1:00 P.M.", amount: 5)
+    let placeholder1 = UserFood(userId: "Placeholder", foodId: 123, food:Food(foodId: 123, name: "Apple", calPerUnit: 5, unit: "grams"), timestamp: "12:55", amount: 3)
+    let placeholder2 = UserFood(userId: "Placeholder", foodId: 124, food: Food(foodId: 124, name: "Banana", calPerUnit: 5, unit: "grams"), timestamp: "22:00", amount: 5)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,7 +70,7 @@ class FoodViewController:UIViewController {
         submitButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(submitButton)
         
-        totalCaloriesLabel.text = "Your total calories today: \(calculateTotalCalories(userFoods: userFoods))"
+        totalCaloriesLabel.text = "Your total calories: \(calcTotalCalories(userFoods: userFoods))"
         totalCaloriesLabel.textColor = .black
         totalCaloriesLabel.textAlignment = .center
         totalCaloriesLabel.font = .systemFont(ofSize: 20)
@@ -117,7 +117,7 @@ class FoodViewController:UIViewController {
         ])
     }
     
-    func calculateTotalCalories(userFoods: [UserFood])-> Int {
+    func calcTotalCalories(userFoods: [UserFood])-> Int {
         var totalCalories:Int = 0
         for item in userFoods {
             totalCalories += item.amount * item.food.calPerUnit
@@ -177,16 +177,26 @@ extension FoodViewController:UITableViewDataSource {
 
 extension FoodViewController:UISearchBarDelegate {
     
+//        DispatchQueue.main.async {
+//          self.searchFoodTableView.reloadData()
+//        }
 }
 
 extension FoodViewController:addFoodDelegate {
     func addFood(amount: Int, food: Food) {
         let hour = Calendar.current.component(.hour, from: Date())
-        let minutes = Calendar.current.component(.minute, from: Date())
-        let newFood = UserFood(userId: "", foodId: food.foodId, food: food, timestamp: "\(hour):\(minutes)", amount: amount)
+        var stringMins = String(Calendar.current.component(.minute, from: Date()))
+        if stringMins.count == 1 {
+            stringMins = "0" + stringMins
+        }
+        let newFood = UserFood(userId: "", foodId: food.foodId, food: food, timestamp: "\(hour):\(stringMins)", amount: amount)
         userFoods.append(newFood)
+        userFoods.sort {
+            $0.timestamp < $1.timestamp
+        }
         DispatchQueue.main.async {
             self.userFoodTableView.reloadData()
+            self.totalCaloriesLabel.text = "Your total calories: \(self.calcTotalCalories(userFoods: self.userFoods))"
         }
         
     }
