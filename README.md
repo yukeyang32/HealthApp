@@ -4,6 +4,8 @@
 ### 1) Create User
 User makes account during sign-in, returns user info
 
+### Base Endpoint:https://healtheat.herokuapp.com/
+
 <code>POST</code> /api/users/
 
 Request
