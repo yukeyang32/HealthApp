@@ -38,7 +38,7 @@ class ActivityDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
         activity_name = UITextField()
         activity_name.translatesAutoresizingMaskIntoConstraints = false
-        activity_name.text = activity?.activity_name
+        activity_name.text = activity?.name
         activity_name.borderStyle = .roundedRect
         activity_name.backgroundColor = .white
         activity_name.textAlignment = .center
@@ -80,7 +80,7 @@ class ActivityDetailViewController: UIViewController {
         
         hour_Label = UILabel()
         hour_Label.translatesAutoresizingMaskIntoConstraints = false
-        hour_Label.text = "Input the time you spent on this \(activity!.activity_name)"
+        hour_Label.text = "Input the time you spent on this \(activity!.name)"
         hour_Label.textAlignment = .center
         view.addSubview(hour_Label)
         

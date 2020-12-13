@@ -19,18 +19,19 @@ class ActivityListController: UIViewController {
     
     var current_plan: UIButton!
     
-    var activities: [Activity]!
+    var activities: [Activity] = []
     let reuseIdentifier = "Activity List"
-    let ac1 = Activity(activity_name: "Swimming", cal: 100, unit: (100,"100m"), picture: "Swimming")
+//    let ac1 = Activity(activity_name: "Swimming", cal: 100, unit: 100, picture: "Swimming")
     
-    let ac2 = Activity(activity_name: "Jogging", cal: 100, unit: (100,"100m"), picture: "Jogging")
+//    let ac2 = Activity(activity_name: "Jogging", cal: 100, unit: 100, picture: "Jogging")
+    
+
     
     var activities_pick: [(Activity,Int)] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.'
-        activities = [ac1,ac2]
 //        title = "ActivityList"
         view.backgroundColor = .white
 //        navigationItem.rightBarButtonItem =  UIBarButtonItem(title: "Current Plan(\(activities_pick.count))", style: .plain, target: self, action: #selector(addPlanViewController))
@@ -50,6 +51,7 @@ class ActivityListController: UIViewController {
         tableView.register(ActivityTableViewCell.self, forCellReuseIdentifier: reuseIdentifier )
         view.addSubview(tableView)
         
+        getActivities()
         setupConstraints()
     }
     
@@ -77,6 +79,26 @@ class ActivityListController: UIViewController {
         navigationController?.pushViewController(vc, animated: false)
             
     }
+    
+    private func getActivities() {
+        /* Instructions: Make a call to getRestaurants function inside of NetworkManager
+         * If function is written correctly, the function should return an array of retaurants.
+         * Inside completion handler block, set restaurants array in this class to the
+         * returned restaurants array and then reload restaurants table view.
+         */
+       
+        NetworkManager.getActivities { activities in
+          self.activities = activities
+          // We want to run any UI updates inside a DispatchQueue.main.async {...} block
+        
+          print("This is \(activities)")
+          DispatchQueue.main.async {
+            self.tableView.reloadData()
+            print(activities)
+          }
+        }
+    }
+    
 }
 
 extension ActivityListController: UITableViewDataSource {

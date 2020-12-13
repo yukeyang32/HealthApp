@@ -108,7 +108,7 @@ class Activity(db.Model):
         return{
             'id' : self.id,
             'name': self.name,
-            'cal_per_hour': self.cal_per_hour
+            'cal': self.cal_per_hour
         }
 
 class UserFood(db.Model):
