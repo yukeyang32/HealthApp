@@ -1,0 +1,7 @@
+version: '3'
+
+services: 
+    healthapp:
+        image: rayyu1832/healthapp
+        ports:
+            - "4000:4000"
