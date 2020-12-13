@@ -56,8 +56,8 @@ class ActivityTableViewCell: UITableViewCell {
     }
 
     func configure(for act: Activity) {
-        activity_name.text = act.activity_name
-        heartImageView.image = UIImage(named: "\(act.picture)")
+        activity_name.text = act.name
+        heartImageView.image = UIImage(named: "swimming")
     }
 
 }

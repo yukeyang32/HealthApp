@@ -50,7 +50,7 @@ class PlanTableViewCell: UITableViewCell {
 
         hour = act.1
         cal_per_hour = act.0.cal
-        activity_name.text = "\(act.0.activity_name) + \(hour!) hours  consume \(hour * cal_per_hour) cal"
+        activity_name.text = "\(act.0.name) + \(hour!) hours  consume \(hour * cal_per_hour) cal"
     }
 
 }

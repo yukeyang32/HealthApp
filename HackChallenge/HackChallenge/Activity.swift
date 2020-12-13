@@ -6,16 +6,17 @@
 //
 import Foundation
 
-class Activity{
-    var activity_name: String
-    var cal: Int
-    var unit: (Int,String)
-    var picture: String
+
+struct ActivityDataResponse: Codable {
+    /* Instructions: Take a look at the JSON response we get from our HTTP Requests.
+     * Model your RestaurantsDataResponse object after the JSON response.
+     */
+    var data:[Activity]
     
-    init(activity_name an: String, cal: Int, unit:(Int,String), picture:String) {
-        self.activity_name = an
-        self.cal = cal
-        self.unit = unit
-        self.picture = picture
-    }
+}
+
+struct Activity: Codable{
+    var id:Int
+    var name: String
+    var cal: Int
 }
