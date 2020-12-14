@@ -1,8 +1,8 @@
-from db import db, User, Food, UserFood
+from db import db, User, Food, UserFood, UserActivity
 from flask import Flask, request
 from db import Activity
 import json
-
+import os
 
 
 
@@ -15,7 +15,7 @@ app.config["SQLALCHEMY_ECHO"] = True
 
 
 sample_acivities = {"Swimming":590, "Jogging":390, "Badminton":135, "Bowling": 90}
-sample_users = {"Swimming":590, "Jogging":390, "Badminton":135, "Bowling": 90}
+sample_food = {"apple":30, "banana":120, "watermellon": 230}
 
 def create_users():
 	new_user = User(
@@ -37,6 +37,15 @@ def create_activities():
 		db.session.add(new_activity)
 	db.session.commit()
 
+def create_foods():
+    for k,v in sample_food.items():
+        new_food = Food(
+                name = k,
+                cal_per_unit = v,
+                unit = "g"
+            )
+        db.session.add(new_food)
+    db.session.commit()
 
 
 db.init_app(app)
@@ -44,6 +53,7 @@ with app.app_context():
     db.create_all()
     create_users()
     create_activities()
+    create_foods()
 
 
 
@@ -66,10 +76,52 @@ def get_activities():
     return success_response(activities)
 
 
+@app.route("/api/users/", methods=["GET"])
+def get_users():
+    users = [user.serialize() for user in User.query.all()]
+    return success_response(users)
 
-@app.route("/api/activities/<int:user_id>/<int:weekday>/",methods=["GET"])
-def get_activities_user(user_id,weekday):
-	act_user = UserActivity.query.filter_by(user_id == user_id).filter_by(timestamp == weekday).all()
+
+@app.route("/api/activities/date/<int:user_id>/",methods=["POST"])
+def get_activities_user_by_date(user_id):
+    print("boday is ok first")
+    body = json.loads(request.data)
+    print("boday is ok")
+    year = body.get('year')
+    if year is None:
+        return failure_response("year can't be none")
+    month = body.get('month')
+    day = body.get('day')
+    acts = [acts.serialize() for acts in UserActivity.query.filter_by(user_id = user_id).filter_by(year = year).filter_by(month = month).filter_by(day = day).all()]
+    return success_response(acts)
+
+
+@app.route("/api/acts/<string:act_name>/add/",methods = ["POST"])
+def add_act_to_user(act_name):
+    act = Activity.query.filter_by(name = act_name).first()
+    body = json.loads(request.data)
+    user_id = body.get('user_id')
+    user = User.query.filter_by(id=user_id).first()
+    if user is None:
+        user = User(id = user_id,)
+    amount = body.get('amount')
+    year = body.get('year')
+    month = body.get('month')
+    day = body.get('day')
+    new_user_act = UserActivity(
+        user_id = user_id,
+        name = act_name,
+        year = year,
+        month = month,
+        day = day,
+        amount = amount
+    )
+    db.session.add(new_user_act)
+    db.session.commit()
+    return success_response(act.serialize())
+
+
+
 
 
 ### Food API
@@ -121,4 +173,5 @@ def add_food_to_user(food_name):
 
 
 if __name__ == "__main__":
-	app.run(host="0.0.0.0", port=4000, debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)

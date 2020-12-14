@@ -10,6 +10,12 @@ association_food_suggestion_table = db.Table(
     db.Column('suggestion_id',db.Integer,db.ForeignKey('suggestion.id'))
 )
 
+
+# User_Activity_Table = db.Table("user_activity", db.Model.metadata,
+#     db.Column("user_id", db.Integer, db.ForeignKey("user.id")),
+#     db.Column("activity_id", db.Integer, db.ForeignKey("activity.id"))
+# )
+
 class User(db.Model):
     __table__name = 'user'
     id = db.Column(db.Integer,primary_key = True)
@@ -19,6 +25,7 @@ class User(db.Model):
     age = db.Column(db.Integer, nullable = False)
     # gender: male(True), female (False)
     gender = db.Column(db.Boolean, default = False, nullable = False)
+    # activities = db.relationship("Activity", secondary=User_Activity_Table, back_populates='users',lazy="dynamic")
 
     def __init__(self,**kwargs):
         self.name = kwargs.get('name','')
@@ -62,43 +69,14 @@ class Calories(db.Model):
             'day': self.day,
         }
 
-class UserActivity(db.Model):
-    __table__name = 'userActivity'
-    id = db.Column(db.Integer,primary_key = True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'),nullable = False)
-    activity_id = db.Column(db.Integer, db.ForeignKey('activity.id'),nullable = False)
-    name = db.Column(db.String, nullable = False)
-    year = db.Column(db.Integer,nullable = False)
-    month = db.Column(db.Integer,nullable = False)
-    day = db.Column(db.Integer,nullable = False)
-    hours = db.Column(db.Integer, nullable = False)
 
-    def __init__(self,**kwargs):
-        self.user_id = kwargs.get('user_id')
-        self.activity_id = kwargs.get('activity_id')
-        self.name = kwargs.get('name','')
-        self.year = kwargs.get('year',2020)
-        self.month = kwargs.get('month',1)
-        self.day = kwargs.get('day',1)
-        self.hours = kwargs.get('hours',0)
-
-    def serialize(self):
-        return{
-            'id': self.id,
-            'user_id' : self.user_id,
-            'activity_id' : self.activity_id,
-            'name': self.name,
-            'year': self.year,
-            'month': self.month,
-            'day': self.day,
-            'hours': self.hours
-        }
 
 class Activity(db.Model):
     __table__name = 'activity'
     id = db.Column(db.Integer,primary_key = True)
     name = db.Column(db.String, nullable = False)
     cal_per_hour = db.Column(db.Integer,nullable = False)
+    # users = db.relationship("User", secondary=User_Activity_Table, back_populates='activities',lazy="dynamic")
 
     def __init__(self,**kwargs):
         self.name = kwargs.get('name','')
@@ -143,6 +121,38 @@ class UserFood(db.Model):
             'amount': self.amount
         }
 
+class UserActivity(db.Model):
+    __table__name = 'userActivity'
+    id = db.Column(db.Integer,primary_key = True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'),nullable = False)
+    # food_id = db.Column(db.Integer, db.ForeignKey('food.id'),nullable = False)
+    name = db.Column(db.String, nullable = False)
+    year = db.Column(db.Integer,nullable = False)
+    month = db.Column(db.Integer,nullable = False)
+    day = db.Column(db.Integer,nullable = False)
+    amount = db.Column(db.Integer, nullable = False)
+
+    def __init__(self,**kwargs):
+        self.user_id = kwargs.get('user_id')
+        # self.food_id = kwargs.get('food_id')
+        self.name = kwargs.get('name','')
+        self.year = kwargs.get('year',2020)
+        self.month = kwargs.get('month',1)
+        self.day = kwargs.get('day',1)
+        self.amount = kwargs.get('amount',0)
+
+    def serialize(self):
+        return{
+            'id': self.id,
+            'userid' : self.user_id,
+            # 'food_id' : self.food_id,
+            'name': self.name,
+            'year': self.year,
+            'month': self.month,
+            'day': self.day,
+            'amount': self.amount
+        }
+
 
 class Food(db.Model):
     __table__name = 'food'
@@ -161,7 +171,7 @@ class Food(db.Model):
         return{
             'id' : self.id,
             'name': self.name,
-            'cal_per_unit': self.cal_per_unit,
+            'cal': self.cal_per_unit,
             'unit': self.unit
         }
 
