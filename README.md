@@ -276,7 +276,7 @@ Response
 ### 12) Get User's Food information for a specific date
 Return Food Info by User ID and date info
 
-<code>GET</code> /api/food/date/{ID}/
+<code>POST</code> /api/food/date/{ID}/
 
 Request
 ```
@@ -302,7 +302,7 @@ Response
 ### 13) Get User's Activity information for a specific date
 Return Food Info by User ID and date info
 
-<code>GET</code> /api/activities/date/{ID}/
+<code>POST</code> /api/activities/date/{ID}/
 
 Request
 ```
