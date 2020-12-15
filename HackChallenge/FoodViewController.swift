@@ -28,7 +28,7 @@ class FoodViewController:UIViewController {
     private let foodReuseIdentifier = "FoodReuseIdentifier"
 
     private var searchResults:[Food] = []
-    private var userFoods:[UserFood] = []
+    private var userEatenFoods:[UserFood] = []
     
     init(date: Date) {
         self.date = date
@@ -44,7 +44,7 @@ class FoodViewController:UIViewController {
         super.viewDidLoad()
         title = "Food"
         view.backgroundColor = .white
-                        
+        getFoodUserByDate(userId: 1)
         foodSearchBar.delegate = self
         foodSearchBar.backgroundColor = .white
         foodSearchBar.placeholder = "Enter Food"
@@ -79,15 +79,15 @@ class FoodViewController:UIViewController {
         submitButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(submitButton)
         
-        totalCaloriesLabel.text = "Your total calories: \(calcTotalCalories(userFoods: userFoods))"
+//        totalCaloriesLabel.text = "Your total calories: \(calcTotalCalories(userFoods: userEatenFoods))"
         totalCaloriesLabel.textColor = .black
         totalCaloriesLabel.textAlignment = .center
         totalCaloriesLabel.font = .systemFont(ofSize: 20)
         totalCaloriesLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.updateTotalCalories()
         view.addSubview(totalCaloriesLabel)
     
         setUpConstraints()
-        getFoodUserByDate(userId: 1)
         }
     
     func setUpConstraints() {
@@ -127,17 +127,24 @@ class FoodViewController:UIViewController {
         ])
     }
     
-    func calcTotalCalories(userFoods: [UserFood])-> Int {
+    func calcTotalCalories(userFoods: [UserFood]) -> Int {
         var totalCalories:Int = 0
-        for item in userFoods {
-            totalCalories += item.amount * item.food.cal
+        for eachFood in userFoods {
+            NetworkManager.getFoodByName(foodName: eachFood.name) { food in
+                totalCalories += eachFood.amount * food.cal
+            }
         }
         return totalCalories
     }
     
     @objc func saveAndDismiss() {
-        addFoodToUser(userFoodList: userFoods)
+        addFoodToUser(userFoodList: userEatenFoods)
         navigationController?.popViewController(animated: true)
+    }
+    
+    func updateTotalCalories() {
+        let totalCalories = self.calcTotalCalories(userFoods: self.userEatenFoods)
+        self.totalCaloriesLabel.text = "Your total calories: \(totalCalories)"
     }
 }
 
@@ -158,7 +165,7 @@ extension FoodViewController:UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch tableView {
         case userFoodTableView:
-            return userFoods.count
+            return userEatenFoods.count
         case searchFoodTableView:
             return searchResults.count
         default:
@@ -170,7 +177,7 @@ extension FoodViewController:UITableViewDataSource {
         case userFoodTableView:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: foodReuseIdentifier) as? UserFoodTableViewCell
             else {return UITableViewCell()}
-            let userFood = userFoods[indexPath.row]
+            let userFood = userEatenFoods[indexPath.row]
             cell.configure(for: userFood)
             return cell
         case searchFoodTableView:
@@ -198,29 +205,31 @@ extension FoodViewController:UISearchBarDelegate {
 
 extension FoodViewController:addFoodDelegate {
     func addFood(amount: Int, food: Food) {
-        let newFood = UserFood(userId: 1, name: food.name, food: food, year: year, month: month, day: day, amount: amount)
-        userFoods.append(newFood)
+        let newFood = UserFood(id: food.id, userid: 1, name: food.name, year: year, month: month, day: day, amount: amount)
+        userEatenFoods.append(newFood)
         DispatchQueue.main.async {
             self.userFoodTableView.reloadData()
-            self.totalCaloriesLabel.text = "Your total calories: \(self.calcTotalCalories(userFoods: self.userFoods))"
         }
-        
     }
 }
 
 extension FoodViewController {
+    
     func addFoodToUser(userFoodList: [UserFood]) {
         for foods in userFoodList {
-            NetworkManager.addFoodToUser(food: foods.food, amount: foods.amount, date: date) { _ in
+            NetworkManager.getFoodByName(foodName: foods.name) { food in
+                NetworkManager.addFoodToUser(food: food, amount: foods.amount, date: self.date) { _ in
+                }
             }
         }
     }
-    
     func getFoodUserByDate(userId: Int) {
-        NetworkManager.getFoodUserByDate(userId: userId) { dateFoods in
-            self.userFoods = dateFoods
+        NetworkManager.getFoodUserByDate(userId: userId, date: date) { dateFoods in
+            self.userEatenFoods = dateFoods
             DispatchQueue.main.async {
                 self.userFoodTableView.reloadData()
+                print(self.userEatenFoods.count)
+                self.totalCaloriesLabel.text = "Your total calories: \(self.calcTotalCalories(userFoods: self.userEatenFoods))"
             }
         }
     }

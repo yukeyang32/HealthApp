@@ -31,7 +31,7 @@ class NetworkManager {
         let endpoint = "\(host)/api/foods/"
         let params:[String:Any] = [
             "name":name,
-            "caloriesPerUnit":cal,
+            "calories_per_unit":cal,
             "unit":unit
         ]
         AF.request(endpoint, method: .post, parameters: params, encoding: JSONEncoding.default).validate().responseData { response in
@@ -110,9 +110,19 @@ class NetworkManager {
         }
     }
     
-    static func getFoodUserByDate(userId: Int, completion: @escaping([UserFood]) -> Void) {
-        let endpoint = "\(host)/api/foods/date/\(userId)/"
-        AF.request(endpoint, method: .get, encoding: JSONEncoding.default).validate().responseData { response in
+    static func getFoodUserByDate(userId: Int, date: Date, completion: @escaping([UserFood]) -> Void) {
+        let endpoint = "\(host)/api/food/date/\(userId)/"
+        let calendar = Calendar.current
+        let year = calendar.component(.year, from: date)
+        let month = calendar.component(.month, from: date)
+        let day = calendar.component(.day, from: date)
+        let params:[String: Any] = [
+            "id":1,
+            "year": year,
+            "month": month,
+            "day": day
+        ]
+        AF.request(endpoint, method: .post, parameters: params, encoding: JSONEncoding.default).validate().responseData { response in
             switch response.result {
             case .success(let data):
                 let jsonDecoder = JSONDecoder()

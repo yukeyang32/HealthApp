@@ -24,10 +24,9 @@ struct GetFoodDateResponse:Codable {
 }
 
 struct UserFood:Codable {
-//    var id:Int
-    var userId:Int
+    var id:Int
+    var userid:Int
     var name:String
-    var food:Food
     var year:Int
     var month:Int
     var day:Int
