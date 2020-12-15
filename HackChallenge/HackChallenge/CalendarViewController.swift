@@ -26,7 +26,16 @@ class CalendarViewController: UIViewController, FSCalendarDelegate{
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition){
-        let tabView = SubTabController()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy"
+        let year = Int(dateFormatter.string(from: date))
+        dateFormatter.dateFormat = "M"
+        let month = Int(dateFormatter.string(from: date))
+        dateFormatter.dateFormat = "d"
+        let day = Int(dateFormatter.string(from: date))
+        print("\(year!) \(month!) \(day!)")
+        let tabView = SubTabController(date: date)
+        
         navigationController?.pushViewController(tabView, animated: true)
     }
 

@@ -15,7 +15,6 @@
 		E716E8E3257FBEB300D745E9 /* UserFoodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E716E8E2257FBEB300D745E9 /* UserFoodTableViewCell.swift */; };
 		E7367564257E9A2900AD33B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7367563257E9A2900AD33B2 /* AppDelegate.swift */; };
 		E7367566257E9A2900AD33B2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7367565257E9A2900AD33B2 /* SceneDelegate.swift */; };
-		E7367568257E9A2900AD33B2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7367567257E9A2900AD33B2 /* ViewController.swift */; };
 		E736756D257E9A2A00AD33B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E736756C257E9A2A00AD33B2 /* Assets.xcassets */; };
 		E75C0FD7258443C80095EAA1 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75C0FD6258443C80095EAA1 /* Activity.swift */; };
 		E75C0FDA258443EA0095EAA1 /* ActivityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75C0FD9258443EA0095EAA1 /* ActivityDetailViewController.swift */; };
@@ -41,7 +40,6 @@
 		E7367560257E9A2900AD33B2 /* HackChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7367563257E9A2900AD33B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E7367565257E9A2900AD33B2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E7367567257E9A2900AD33B2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E736756C257E9A2A00AD33B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E7367571257E9A2A00AD33B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E75C0FD6258443C80095EAA1 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
@@ -110,7 +108,6 @@
 			children = (
 				E7367563257E9A2900AD33B2 /* AppDelegate.swift */,
 				E7367565257E9A2900AD33B2 /* SceneDelegate.swift */,
-				E7367567257E9A2900AD33B2 /* ViewController.swift */,
 				E75C0FF225844A9F0095EAA1 /* SubTabController.swift */,
 				E75C0FEB2584470F0095EAA1 /* WeekdayTableViewCell.swift */,
 				E75C0FE8258446170095EAA1 /* Day.swift */,
@@ -261,7 +258,6 @@
 				E75C0FE32584447D0095EAA1 /* PlanTableViewCell.swift in Sources */,
 				E75C0FE0258444550095EAA1 /* ActivityTableViewCell.swift in Sources */,
 				E75C0FDA258443EA0095EAA1 /* ActivityDetailViewController.swift in Sources */,
-				E7367568257E9A2900AD33B2 /* ViewController.swift in Sources */,
 				E75C0FF6258451230095EAA1 /* SearchTableViewCell.swift in Sources */,
 				E716E8D2257E9B8B00D745E9 /* Food.swift in Sources */,
 				E75C0FE6258444950095EAA1 /* PlanViewController.swift in Sources */,
