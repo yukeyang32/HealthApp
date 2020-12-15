@@ -293,7 +293,8 @@ Response
   "success": true,
   "data": [
     {
-      "food": <SERIALIZED Food>
+      "id": <ID>,
+      "foods": <SERIALIZED Food List>
     }
   ]
 }
@@ -319,7 +320,8 @@ Response
   "success": true,
   "data": [
     {
-      "activity": <SERIALIZED Activity>
+      "id": <ID>,
+      "activities": <SERIALIZED Activity List>)
     }
   ]
 }
