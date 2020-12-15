@@ -8,7 +8,7 @@ import Foundation
 import Alamofire
 
 class NetworkManager {
-    private static let host = "http://0.0.0.0:5000"
+    private static let host = "https://healtheat.herokuapp.com"
     
     
     static func getActivities(completion: @escaping ([Activity]) -> Void) {
@@ -16,20 +16,10 @@ class NetworkManager {
         AF.request(endpoint, method: .get).validate().responseData { response in
             switch response.result {
             case .success(let data):
-                print(data)
-                print("here2")
                 let jsonDecoder = JSONDecoder()
                 jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-                
-                do {
-                    try jsonDecoder.decode(ActivityDataResponse.self, from: data)
-                }catch {
-                    print("\(error)")
-                }
-                
                 if let activitesData = try? jsonDecoder.decode(ActivityDataResponse.self, from: data) {
                     // Instructions: Use completion to handle response
-                    print("here3")
                     completion(activitesData.data)
                 }
             case .failure(let error):
@@ -37,4 +27,60 @@ class NetworkManager {
             }
         }
     }
+    
+    static func getActivitiesByDateAndId(date: Date, completion: @escaping ([ActivityByDate]) -> Void) {
+        let endpoint = "\(host)/api/activities/date/1/"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy"
+        let year = Int(dateFormatter.string(from: date))
+        dateFormatter.dateFormat = "M"
+        let month = Int(dateFormatter.string(from: date))
+        dateFormatter.dateFormat = "d"
+        let day = Int(dateFormatter.string(from: date))
+
+        let parameters = ["year":year,"month":month,"day":day]
+        AF.request(endpoint,  method: .post , parameters:parameters, encoding: JSONEncoding.default).validate().responseData{ response in
+            switch response.result {
+            case .success(let data):
+                let jsonDecoder = JSONDecoder()
+                jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+                if let activitesData = try? jsonDecoder.decode(ActivityByDateResponse.self, from: data) {
+                    // Instructions: Use completion to handle response
+                    completion(activitesData.data)
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    static func addActivitiesToUser(date:Date, name: String, amount:Int) {
+        let endpoint = "\(host)/api/acts/\(name)/add/"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy"
+        let year = Int(dateFormatter.string(from: date))
+        dateFormatter.dateFormat = "M"
+        let month = Int(dateFormatter.string(from: date))
+        dateFormatter.dateFormat = "d"
+        let day = Int(dateFormatter.string(from: date))
+
+        
+        
+        let parameters = ["year":year,"month":month,"day":day,"user_id": 1, "amount": amount]
+        AF.request(endpoint,  method: .post , parameters:parameters, encoding: JSONEncoding.default).validate().responseData{ response in
+            switch response.result {
+            case .success(let data):
+//                let jsonDecoder = JSONDecoder()
+//                jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+//                if let activitesData = try? jsonDecoder.decode(ActivityByDateResponse.self, from: data) {
+//                    // Instructions: Use completion to handle response
+//                    completion(activitesData.data)
+//                }
+            print("successfully")
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
 }
