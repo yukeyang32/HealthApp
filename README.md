@@ -273,6 +273,57 @@ Response
 ```
 
 
+### 12) Get User's Food information for a specific date
+Return Food Info by User ID and date info
+
+<code>GET</code> /api/food/date/{ID}/
+
+Request
+```
+{
+  "id" : <ID>
+  "year": <USER INPUT>,
+  "month": <USER INPUT>,
+  "day": <USER INPUT>
+}
+```
+Response
+```
+{
+  "success": true,
+  "data": [
+    {
+      "food": <SERIALIZED Food>
+    }
+  ]
+}
+```
+
+### 13) Get User's Activity information for a specific date
+Return Food Info by User ID and date info
+
+<code>GET</code> /api/activities/date/{ID}/
+
+Request
+```
+{
+  "id" : <ID>
+  "year": <USER INPUT>,
+  "month": <USER INPUT>,
+  "day": <USER INPUT>
+}
+```
+Response
+```
+{
+  "success": true,
+  "data": [
+    {
+      "activity": <SERIALIZED Activity>
+    }
+  ]
+}
+```
 
 
 
