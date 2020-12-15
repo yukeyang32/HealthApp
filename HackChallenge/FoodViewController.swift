@@ -228,7 +228,6 @@ extension FoodViewController {
             self.userEatenFoods = dateFoods
             DispatchQueue.main.async {
                 self.userFoodTableView.reloadData()
-                print(self.userEatenFoods.count)
                 self.totalCaloriesLabel.text = "Your total calories: \(self.calcTotalCalories(userFoods: self.userEatenFoods))"
             }
         }
