@@ -77,14 +77,14 @@ class NetworkManager {
         }
     }
     
-    static func addFoodToUser(food: Food, amount: Int, date: Date, completion: @escaping (UserFood) -> Void) {
+    static func addFoodToUser(food: Food, amount: Int, date: Date, completion: @escaping (Food) -> Void) {
         let endpoint = "\(host)/api/foods/\(food.name)/add/"
         let calendar = Calendar.current
         let year = calendar.component(.year, from: date)
         let month = calendar.component(.month, from: date)
         let day = calendar.component(.day, from: date)
         let params:[String:Any] = [
-            "userId":1,
+            "user_id":1,
             "amount":amount,
             "year":year,
             "month":month,
@@ -102,7 +102,6 @@ class NetworkManager {
                 }
                 if let foodData = try? jsonDecoder.decode(AddFoodResponse.self, from: data) {
                     let food = foodData.data
-                    print("success")
                     completion(food)
                 }
             case .failure(let error):

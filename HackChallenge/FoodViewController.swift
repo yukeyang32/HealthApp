@@ -212,7 +212,6 @@ extension FoodViewController {
     func addFoodToUser(userFoodList: [UserFood]) {
         for foods in userFoodList {
             NetworkManager.addFoodToUser(food: foods.food, amount: foods.amount, date: date) { _ in
-                print("Food added to User")
             }
         }
     }

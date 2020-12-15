@@ -16,7 +16,7 @@ struct NewFood:Codable {
 }
 
 struct AddFoodResponse:Codable {
-    var data:UserFood
+    var data:Food
 }
 
 struct GetFoodDateResponse:Codable {

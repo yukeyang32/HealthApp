@@ -56,7 +56,6 @@ class UserFoodTableViewCell : UITableViewCell {
     
     func configure(for userFood: UserFood) {
         nameLabel.text = userFood.name
-//        timestampLabel.text =
         calLabel.text = "\(userFood.food.cal * userFood.amount) calories"
     }
 }
