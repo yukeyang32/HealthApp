@@ -157,7 +157,7 @@ Response
 ```
 
 ### 7) Get Specific Food by Name
-Return Activity Info by correponding Food
+Return Food Info by correponding Name
 
 <code>GET</code> /api/foods/{name}/
 
