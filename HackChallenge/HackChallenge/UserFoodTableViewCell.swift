@@ -55,9 +55,14 @@ class UserFoodTableViewCell : UITableViewCell {
     }
     
     func configure(for userFood: UserFood) {
-        nameLabel.text = userFood.food.name
-        timestampLabel.text = userFood.timestamp
-        calLabel.text = "\(userFood.food.calPerUnit * userFood.amount) calories"
+        nameLabel.text = userFood.name
+        var totalCalories:Int = 0
+        NetworkManager.getFoodByName(foodName: userFood.name) { food in
+            totalCalories = food.cal * userFood.amount
+            DispatchQueue.main.async{
+                self.calLabel.text = "\(totalCalories) calories"
+            }
+        }
     }
 }
 

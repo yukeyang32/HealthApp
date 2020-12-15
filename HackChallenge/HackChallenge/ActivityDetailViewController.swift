@@ -21,10 +21,6 @@ class ActivityDetailViewController: UIViewController {
     
     var hourField: UITextField!
     var hour_Label: UILabel!
-    
-    var userid: Int!
-    var year:Int!
-    
 
     init(delegate: AddRemoveDelegte?, activity:Activity?, index: Int) {
         super.init(nibName: nil, bundle: nil)

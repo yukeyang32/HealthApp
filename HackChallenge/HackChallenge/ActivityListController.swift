@@ -25,20 +25,9 @@ class ActivityListController: UIViewController {
     
 //    let ac2 = Activity(activity_name: "Jogging", cal: 100, unit: 100, picture: "Jogging")
     
-    var date: Date!
+
     
     var activities_pick: [(Activity,Int)] = []
-    
-    
-    init(date:Date){
-        self.date = date
-        super.init(nibName: nil, bundle: nil)
-        
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,7 +52,6 @@ class ActivityListController: UIViewController {
         view.addSubview(tableView)
         
         getActivities()
-        getActivitiesByDateAndId()
         setupConstraints()
     }
     
@@ -100,35 +88,11 @@ class ActivityListController: UIViewController {
          */
        
         NetworkManager.getActivities { activities in
-          self.activities = activities
+            self.activities = activities
           // We want to run any UI updates inside a DispatchQueue.main.async {...} block
-        
-          print("This is \(activities)")
-          DispatchQueue.main.async {
-            self.tableView.reloadData()
-            print(activities)
-          }
-        }
-    }
-    
-    private func getActivitiesByDateAndId() {
-        /* Instructions: Make a call to getRestaurants function inside of NetworkManager
-         * If function is written correctly, the function should return an array of retaurants.
-         * Inside completion handler block, set restaurants array in this class to the
-         * returned restaurants array and then reload restaurants table view.
-         */
-       
-        NetworkManager.getActivitiesByDateAndId(date: self.date) { ActivityByDate in
-//          self.activities = activities
-            for act in ActivityByDate{
-                self.activities_pick.append( (Activity(id: 0, name: act.name, cal: 200),act.amount))
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
-//           We want to run any UI updates inside a DispatchQueue.main.async {...} block
-//        
-//          print("This is \(activities)")
-          DispatchQueue.main.async {
-            self.current_plan.setTitle("Current Plan(\(self.activities_pick.count))", for:  UIControl.State.normal)
-          }
         }
     }
     
@@ -182,7 +146,6 @@ extension ActivityListController: UITableViewDelegate {
 //        navigationController?.pushViewController(vc, animated: true)
 //
 //    }
-
 }
 
 
@@ -193,7 +156,6 @@ extension ActivityListController: AddRemoveDelegte{
         activities.remove(at: index)
         tableView.reloadData()
         current_plan.setTitle("Current Plan(\(activities_pick.count))", for:  UIControl.State.normal)
-        NetworkManager.addActivitiesToUser(date: self.date,name: activities[index].name, amount: hours)
     }
     func addSongName(song_name:String, artists_name: String, album_name: String){
         return
