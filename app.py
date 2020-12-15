@@ -132,7 +132,7 @@ def create_food():
         return failure_response('Fail to create a food')
     new_food = Food(
         name = body.get('name'),
-        calories_per_unit = body.get('calories_per_unit'),
+        cal_per_unit = body.get('calories_per_unit'),
 		unit = body.get('unit')
     )
     db.session.add(new_food)
@@ -158,7 +158,7 @@ def add_food_to_user(food_name):
     amount = body.get('amount')
     year = body.get('year')
     month = body.get('month')
-    day = body.get('month')
+    day = body.get('day')
     new_user_food = UserFood(
         user_id = user_id,
         name = food_name,
@@ -170,6 +170,20 @@ def add_food_to_user(food_name):
     db.session.add(new_user_food)
     db.session.commit()
     return success_response(food.serialize())
+
+
+@app.route("/api/food/date/<int:user_id>/",methods=["POST"])
+def get_food_user_by_date(user_id):
+    body = json.loads(request.data)
+    year = body.get('year')
+    if year is None:
+        return failure_response("year can't be none")
+    month = body.get('month')
+    day = body.get('day')
+    foods = [foods.serialize() for foods in UserFood.query.filter_by(user_id = user_id).filter_by(year = year).filter_by(month = month).filter_by(day = day).all()]
+    return success_response(foods)
+
+
 
 
 if __name__ == "__main__":

@@ -112,7 +112,7 @@ class UserFood(db.Model):
     def serialize(self):
         return{
             'id': self.id,
-            'user_id' : self.user_id,
+            'userid' : self.user_id,
             # 'food_id' : self.food_id,
             'name': self.name,
             'year': self.year,
